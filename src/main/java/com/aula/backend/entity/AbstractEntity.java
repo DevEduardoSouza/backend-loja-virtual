@@ -13,6 +13,8 @@ public class AbstractEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String nome;
+
     @Temporal(TemporalType.TIMESTAMP) //Informar que vai ser salvo data e hora
     private Date DataCriacao;
     @Temporal(TemporalType.TIMESTAMP)

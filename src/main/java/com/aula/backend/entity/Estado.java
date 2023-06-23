@@ -10,7 +10,5 @@ import java.util.Date;
 @Table(name = "Estados")
 @Data
 public class Estado extends AbstractEntity{
-    private String nome;
     private String sigla;
-
 }
