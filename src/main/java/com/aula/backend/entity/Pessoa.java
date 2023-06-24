@@ -5,10 +5,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 @Table(name = "pessoa")
+@Data
 public class Pessoa extends AbstractEntity{
     @CPF
     private String cpf;
@@ -19,4 +21,6 @@ public class Pessoa extends AbstractEntity{
     @ManyToOne
     @JoinColumn(name = "idCidade")
     private Cidade cidade;
+
+
 }
