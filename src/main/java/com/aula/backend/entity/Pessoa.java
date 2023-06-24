@@ -16,7 +16,6 @@ public class Pessoa extends AbstractEntity{
     private String email;
     private String endereco;
     private String cep;
-
     @ManyToOne
     @JoinColumn(name = "idCidade")
     private Cidade cidade;
