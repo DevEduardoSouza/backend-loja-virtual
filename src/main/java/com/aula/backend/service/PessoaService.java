@@ -12,15 +12,12 @@ import java.util.List;
 
 @Service
 public class PessoaService {
-
     @Autowired
     private PessoaRepository pessoaRepository;
-
 
     public List<Pessoa> buscarTodos(){
         return  pessoaRepository.findAll();
     }
-
     public Pessoa inserir(Pessoa pessoa){
         pessoa.setDataCriacao(new Date());
         Pessoa pessoaNovo = pessoaRepository.saveAndFlush(pessoa);
