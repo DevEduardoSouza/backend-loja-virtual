@@ -19,5 +19,5 @@ public class PermissaoPessoa extends AbstractEntity{
 
     @ManyToOne
     @JoinColumn(name = "idPermissao")
-    private PermissaoPessoa permissaoPessoa;
+    private Permissao permissao;
 }
