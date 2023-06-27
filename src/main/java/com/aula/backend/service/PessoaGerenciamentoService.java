@@ -28,14 +28,35 @@ public class PessoaGerenciamentoService {
         pessoaRepository.saveAndFlush(pessoa);
 
 
-        emailService.enviarEmalTexto(pessoa.getEmail(), "Código de Reuperação de senha ",
-                "O seu código para recuperação de senha é: " + pessoa.getCodigoRecuperacaoSenha());
+        emailService.enviarEmalTexto(pessoa.getEmail(), "Código de Reuperação de senha ", "O seu código para recuperação de senha é: " + pessoa.getCodigoRecuperacaoSenha());
         return "Código enviado";
+    }
+
+    public String alterarSenha(Pessoa pessoa){
+        Pessoa pessoaBanco = pessoaRepository.findByEmailAndCodigoRecuperacaoSenha(pessoa.getEmail(), pessoa.getCodigoRecuperacaoSenha());
+
+        if(pessoaBanco!=null){
+            Date diferenca = new Date(new Date().getTime() - pessoaBanco.getDataEnvioCodigo().getTime());
+
+            if(diferenca.getTime()/1000 < 900){
+                pessoaBanco.setSenha(pessoa.getSenha());
+                pessoaBanco.setCodigoRecuperacaoSenha(null);
+                pessoaBanco.setDataEnvioCodigo(null);
+
+                pessoaRepository.saveAndFlush(pessoaBanco);
+
+                return "Senah alterada com sucesso";
+            }else{
+                return "Tempo expirado, solicite um novo código";
+            }
+        }else{
+            return "Email ou código não encontrado";
+        }
+
     }
 
     private String getCodigoRecuperacaoSenha(Long id){
         DateFormat format = new SimpleDateFormat("ddMMyyyyHHmmssmm");
-
         return format.format(new Date()) + id;
     }
 

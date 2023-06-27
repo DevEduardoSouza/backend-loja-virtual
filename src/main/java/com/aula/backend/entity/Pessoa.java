@@ -20,6 +20,7 @@ public class Pessoa extends AbstractEntity{
     private String email;
     private String endereco;
     private String cep;
+    private String senha;
     private String codigoRecuperacaoSenha;
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataEnvioCodigo;
