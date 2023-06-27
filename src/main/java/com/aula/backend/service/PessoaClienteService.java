@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PessoaClienteService {
@@ -31,9 +33,13 @@ public class PessoaClienteService {
 
         permissaoPessoaService.vincularPessoaPermissaoCliente(pessoaNovo);
 
-        emailService.enviarEmalTexto(pessoa.getEmail(), "Cadastro na Loja virtual", "O resisitro na loja foi realizado com sucesso. " +
-                                    "Em breve você receberá a senha de acesso por e-mail");
+        //emailService.enviarEmalTexto(pessoa.getEmail(), "Cadastro na Loja virtual", "O resisitro na loja foi realizado com sucesso. " +"Em breve você receberá a senha de acesso por e-mail");
 
+        Map<String, Object> proprMap =  new HashMap<>();
+        proprMap.put("nome", pessoaNovo.getNome());
+        proprMap.put("mensagem", "O resisitro na loja foi realizado com sucesso. Em breve você receberá a senha de acesso por e-mail");
+
+        emailService.enviarEmailTemplate(pessoaNovo.getEmail(), "Cadastro na Loja virtual", proprMap);
         return pessoaNovo;
     }
 
