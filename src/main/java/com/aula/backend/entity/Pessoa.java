@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -19,6 +20,9 @@ public class Pessoa extends AbstractEntity{
     private String email;
     private String endereco;
     private String cep;
+    private String codigoRecuperacaoSenha;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dataEnvioCodigo;
 
     @OneToMany(mappedBy = "pessoa", orphanRemoval = true, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @Setter(value = AccessLevel.NONE)
