@@ -19,6 +19,9 @@ public class PessoaClienteService {
     @Autowired
     private PermissaoPessoaService permissaoPessoaService;
 
+    @Autowired
+    private EmailService emailService;
+
 
     public Pessoa registar(PessoaClienteRequestDTO pessoaDto){
         Pessoa pessoa = new PessoaClienteRequestDTO().coverter(pessoaDto);
@@ -27,6 +30,10 @@ public class PessoaClienteService {
         Pessoa pessoaNovo = pessoaRepository.saveAndFlush(pessoa);
 
         permissaoPessoaService.vincularPessoaPermissaoCliente(pessoaNovo);
+
+        emailService.enviarEmalTexto(pessoa.getEmail(), "Cadastro na Loja virtual", "O resisitro na loja foi realizado com sucesso. " +
+                                    "Em breve você receberá a senha de acesso por e-mail");
+
         return pessoaNovo;
     }
 
