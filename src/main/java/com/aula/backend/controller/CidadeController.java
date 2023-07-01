@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/cidade")
+@CrossOrigin(origins = "*")
 public class CidadeController {
 
     @Autowired

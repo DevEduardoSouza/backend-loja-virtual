@@ -37,7 +37,7 @@ public class PessoaClienteService {
 
         Map<String, Object> proprMap =  new HashMap<>();
         proprMap.put("nome", pessoaNovo.getNome());
-        proprMap.put("mensagem", "O resisitro na loja foi realizado com sucesso. Em breve você receberá a senha de acesso por e-mail");
+        proprMap.put("mensagem", "O regisitro na loja foi realizado com sucesso. Em breve você receberá a senha de acesso por e-mail");
 
         emailService.enviarEmailTemplate(pessoaNovo.getEmail(), "Cadastro na Loja virtual", proprMap);
         return pessoaNovo;
