@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/produtoImagens")
+@CrossOrigin(origins = "*")
 public class ProdutoImagensController {
 
     @Autowired

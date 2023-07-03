@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/marca")
+@CrossOrigin(origins = "*")
 public class MarcaController {
     @Autowired
     private MarcaService marcaService;
