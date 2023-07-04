@@ -15,6 +15,7 @@ public class Produto extends AbstractEntity{
     private String descricaoDetalhada;
     private Double valorCusto;
     private Double valorVenda;
+    private int quantidade;
 
     @ManyToOne
     @JoinColumn(name = "idMarca")
